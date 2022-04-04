@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Convert Weight Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+      body {
+        margin: 0 auto;
+        max-width: 40em;
+        width: 88%;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Convert Weight Library</h1>
+
+    <p>All of the magic here happens in the console.</p>
+
+
+    <script>
+      let convert = (function () {
+
+          /**
+           * Converts grams to Kilograms
+           * @param {Number} weight The weight to convert
+           */
+          function gramsToKg(weight) {
+            return weight / 1000;
+          }
+
+          /**
+           * Converts grams to Milligrams
+           * @param {Number} weight The weight to convert
+           */
+          function gramsToMg(weight) {
+            return weight * 1000;
+          }
+
+          /**
+           * Converts kilograms to grams
+           * @param {Number} weight The weight to convert
+           */
+          function kilogramsToGm(weight) {
+            return weight * 1000;
+          }
+
+          /**
+           * Converts kilograms to Milligrams
+           * @param {Number} weight The weight to convert
+           */
+          function kilogramsToMg(weight) {
+            return weight * 1000 * 1000;
+          }
+
+          /**
+           * Converts milligrams to grams
+           * @param {Number} weight The weight to convert
+           */
+          function milligramsToGm(weight) {
+            return weight / 1000;
+          }
+
+          /**
+           * Converts milligrams to Kilograms
+           * @param {Number} weight The weight to convert
+           */
+          function milligramsToKg(weight) {
+            return weight / 1000 /1000;
+          }
+
+          // Export public methods
+          return {
+            gramsToKg,
+            gramsToMg,
+            kilogramsToGm,
+            kilogramsToMg,
+            milligramsToGm,
+            milligramsToKg
+          };
+        }
+      )();
+
+      let grams = 42;
+      let gram_kgs = convert.gramsToKg(grams);
+      let gram_mgs = convert.gramsToMg(grams);
+      let kilo_gms = convert.kilogramsToGm(grams);
+      let kilo_mgs = convert.kilogramsToMg(grams);
+      let milli_gms = convert.milligramsToGm(grams);
+      let milli_kgs = convert.milligramsToKg(grams);
+
+      console.log('Grams to Kgs:', gram_kgs);
+      console.log('Grams to Mgs:', gram_mgs);
+      console.log('Kilo to Gms:', kilo_gms);
+      console.log('Kilo to Mgs:', kilo_mgs);
+      console.log('Milo to Gms:', milli_gms);
+      console.log('Milo to Kgs:', milli_kgs);
+    </script>
+  </body>
+</html>
