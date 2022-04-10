@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Convert Weight Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+      body {
+        margin: 0 auto;
+        max-width: 40em;
+        width: 88%;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Convert Weight Library</h1>
+
+    <p>All of the magic here happens in the console.</p>
+
+
+    <script>
+      let Weight = (function () {
+          let units = 'mg';
+
+          function Constructor(weight) {
+            units = 'mg'
+            this.weight = parseFloat(weight);
+          }
+
+          Constructor.prototype.inGrams = function () {
+            units = 'g'
+            return this.weight / 1000;
+          };
+
+          Constructor.prototype.inKg = function () {
+            units = 'kg'
+            return this.weight / 1000 / 1000;
+          };
+
+          Constructor.prototype.inMg = function () {
+            units = 'mg'
+            return this.weight;
+          };
+
+          Constructor.prototype.addMg = function(n) {
+            this.weight = this.weight + n;
+            return this;
+          }
+
+          Constructor.prototype.addGrams = function(n) {
+            this.weight = this.weight + (n * 1000);
+            return this;
+          }
+
+          Constructor.prototype.addKgs = function(n) {
+            this.weight = this.weight + (n * 1000 * 1000);
+            return this;
+          }
+
+          return Constructor;
+        }
+      )();
+
+      let hummingbird = new Weight(4000);
+      let output = hummingbird.addMg(150).addGrams(1).inGrams();
+
+      console.log(output);
+      
+    </script>
+  </body>
+</html>
