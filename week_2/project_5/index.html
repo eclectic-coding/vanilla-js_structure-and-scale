@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dates Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+      body {
+        margin: 0 auto;
+        max-width: 40em;
+        width: 88%;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Dates Library</h1>
+
+    <p>All of the magic here happens in the console.</p>
+
+
+    <script>
+      let time = (function () {
+
+          function getDay(date) {
+            const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            return daysOfWeek[date.getDay()];
+          }
+
+          function getMonth(date) {
+            const monthsOfYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            return monthsOfYear[date.getMonth()];
+          }
+
+          function addSeconds(date, amount) {
+            date.setSeconds(date.getSeconds() + parseInt(amount))
+          }
+
+          function addMinutes(date, amount) {
+            date.setMinutes(date.getMinutes() + parseInt(amount))
+          }
+
+          function addHours(date, amount) {
+            date.setHours(date.getHours() + parseInt(amount))
+          }
+
+          function addDays(date, amount) {
+            date.setDate(date.getDate() + parseInt(amount))
+          }
+
+          function addMonths(date, amount) {
+            date.setMonth(date.getMonth() + parseInt(amount))
+          }
+
+          function addYears(date, amount) {
+            date.setFullYear(date.getFullYear() + parseInt(amount))
+          }
+
+          return { getDay, getMonth, addSeconds, addMinutes, addHours, addDays, addMonths, addYears };
+        }
+      )();
+
+      // Create a Date() object for Halloween
+      let christmas = new Date('December 25, 2020');
+      console.log(time.getDay(christmas));
+
+      // Add 24 seconds to the date
+      time.addSeconds(christmas, 30);
+      console.log(christmas);
+
+      // Add 32 minutes to the date
+      time.addMinutes(christmas, 30);
+      console.log(christmas);
+
+      // Add 8 hours to the date
+      time.addHours(christmas, 12);
+      console.log(christmas);
+
+      // Add 27 minutes to the date
+      time.addDays(christmas, 5);
+      console.log(christmas);
+
+      // Add 24 years to the date
+      time.addYears(christmas, 2);
+      console.log(christmas);
+
+
+    </script>
+  </body>
+</html>
