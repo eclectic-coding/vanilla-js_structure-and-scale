@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Convert Weight Library - Options</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+      body {
+        margin: 0 auto;
+        max-width: 40em;
+        width: 88%;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Convert Weight Library - Options</h1>
+
+    <p>All of the magic here happens in the console.</p>
+
+
+    <script>
+      let Convert = (function () {
+
+        /**
+         * Standarize the weight into milligrams for easier math
+         * @param  {Number} weight The weight
+         * @param  {String} units  The units the weight is in
+         * @return {Number}        The weight in milligrams
+         */
+        function weightToMg (weight, units) {
+          if (units === 'grams') return weight * 1000;
+          if (units === 'kg') return weight * 1000 * 1000;
+          return weight;
+        }
+
+        /**
+         * The Constructor object
+         * @param {Number} weight  The weight
+         * @param {Object} options Options and settings
+         */
+        function Constructor (weight, options = {}) {
+
+          // Merge user options into defaults
+          let settings = Object.assign({
+            units: 'mg'
+          }, options);
+
+          // Make sure valid units were provided
+          if (!['mg', 'grams', 'kg'].includes(settings.units)) {
+            throw `[Convert.js]: "${settings.units}" is not a valid weight`;
+          }
+
+          // Define instance properties
+          this.weight = weightToMg(weight, settings.units);
+
+        }
+
+        /**
+         * Add milligrams to the weight
+         * @param {Number} n The weight to add
+         */
+        Constructor.prototype.addMg = function (n) {
+          this.weight = this.weight + n;
+          return this;
+        };
+
+        /**
+         * Add grams to the weight
+         * @param {Number} n The weight to add
+         */
+        Constructor.prototype.addGrams = function (n) {
+          this.weight = this.weight + (n * 1000);
+          return this;
+        };
+
+        /**
+         * Add kilograms to the weight
+         * @param {Number} n The weight to add
+         */
+        Constructor.prototype.addKg = function (n) {
+          this.weight = this.weight + (n * 1000 * 1000);
+          return this;
+        };
+
+        /**
+         * Get weight in milligrams
+         * @return {Number} The weight in milligrams
+         */
+        Constructor.prototype.inMg = function () {
+          return this.weight;
+        };
+
+        /**
+         * Get weight in grams
+         * @return {Number} The weight in grams
+         */
+        Constructor.prototype.inGrams = function () {
+          return this.weight / 1000;
+        };
+
+        /**
+         * Get weight in kilograms
+         * @return {Number} The weight in kilograms
+         */
+        Constructor.prototype.inKg = function () {
+          return this.weight / 1000 / 1000;
+        };
+
+        return Constructor;
+
+      })();
+
+      // Create a new instance in grams
+      let hummingbird = new Convert(4, {
+        units: 'grams'
+      });
+
+      // Create an instance with the default milligrams
+      let bumbleBee = new Convert(150);
+
+      console.log(hummingbird.inGrams());
+      console.log(bumbleBee.inGrams());
+    </script>
+  </body>
+</html>
